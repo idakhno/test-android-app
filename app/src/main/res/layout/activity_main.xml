@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/inputText"
+        android:layout_width="wrap_content"
+        android:minWidth="280dp"
+        android:maxWidth="280dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:gravity="center"
+        android:hint="@string/input_hint"
+        android:inputType="text"
+        android:minHeight="48dp" />
+
+    <Button
+        android:id="@+id/openSecondActivityButton"
+        android:layout_width="wrap_content"
+        android:minWidth="280dp"
+        android:maxWidth="280dp"
+        android:layout_height="wrap_content"
+        android:text="@string/open_second_activity" />
+
+    <Button
+        android:id="@+id/dialButton"
+        android:layout_width="wrap_content"
+        android:minWidth="280dp"
+        android:maxWidth="280dp"
+        android:layout_height="wrap_content"
+        android:text="@string/call_friend" />
+
+    <Button
+        android:id="@+id/shareButton"
+        android:layout_width="wrap_content"
+        android:minWidth="280dp"
+        android:maxWidth="280dp"
+        android:layout_height="wrap_content"
+        android:text="@string/share_text" />
+</LinearLayout>
