@@ -1,4 +1,4 @@
-package myapplication.ui.screens
+package notrustore.presentation.screens.applist
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
@@ -17,13 +17,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import coil3.compose.AsyncImage
-import myapplication.R
-import myapplication.data.AppInfo
-import myapplication.data.Category
-import myapplication.data.sampleApps
-import myapplication.ui.theme.MyApplicationTheme
-import myapplication.ui.theme.Size
-import myapplication.ui.theme.Spacing
+import notrustore.R
+import notrustore.data.model.AppInfo
+import notrustore.data.model.Category
+import notrustore.data.sampleApps
+import notrustore.presentation.theme.NotRuStoreTheme
+import notrustore.presentation.theme.Size
+import notrustore.presentation.theme.Spacing
 
 @Composable
 fun AppItem(
@@ -64,7 +64,7 @@ fun AppItem(
 }
 
 @get:StringRes
-private val Category.titleRes: Int
+internal val Category.titleRes: Int
     get() = when (this) {
         Category.APP -> R.string.category_app
         Category.PRODUCTIVITY -> R.string.category_productivity
@@ -84,7 +84,7 @@ private val Category.titleRes: Int
 @Preview(showBackground = true)
 @Composable
 private fun AppItemPreview() {
-    MyApplicationTheme {
+    NotRuStoreTheme {
         AppItem(
             app = sampleApps.first(),
             modifier = Modifier

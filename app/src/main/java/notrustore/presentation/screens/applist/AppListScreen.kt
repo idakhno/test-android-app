@@ -1,12 +1,13 @@
-package myapplication.ui.screens
+package notrustore.presentation.screens.applist
 
-import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
@@ -16,24 +17,28 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import myapplication.R
-import myapplication.data.sampleApps
-import myapplication.ui.theme.MyApplicationTheme
-import myapplication.ui.theme.Size
-import myapplication.ui.theme.Spacing
+import notrustore.R
+import notrustore.data.model.AppInfo
+import notrustore.data.sampleApps
+import notrustore.presentation.theme.NotRuStoreTheme
+import notrustore.presentation.theme.Size
+import notrustore.presentation.theme.Spacing
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppListScreen() {
+fun AppListScreen(
+    onAppClick: (AppInfo) -> Unit,
+) {
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {},
                 navigationIcon = {
-                    Image(
+                    Icon(
                         painter = painterResource(R.drawable.ic_launcher_foreground),
                         contentDescription = stringResource(R.string.app_name),
-                        modifier = Modifier.size(Size.topBarIcon)
+                        tint = MaterialTheme.colorScheme.onPrimary,
+                        modifier = Modifier.size(Size.topBarIcon),
                     )
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -50,6 +55,7 @@ fun AppListScreen() {
                     app = app,
                     modifier = Modifier
                         .fillMaxWidth()
+                        .clickable { onAppClick(app) }
                         .padding(horizontal = Spacing.l, vertical = Spacing.m),
                 )
             }
@@ -60,7 +66,7 @@ fun AppListScreen() {
 @Preview
 @Composable
 private fun AppListScreenPreview() {
-    MyApplicationTheme {
-        AppListScreen()
+    NotRuStoreTheme {
+        AppListScreen(onAppClick = {})
     }
 }
