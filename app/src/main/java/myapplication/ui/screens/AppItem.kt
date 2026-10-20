@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,13 +16,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import myapplication.R
 import myapplication.data.AppInfo
 import myapplication.data.Category
 import myapplication.data.sampleApps
 import myapplication.ui.theme.MyApplicationTheme
+import myapplication.ui.theme.Size
+import myapplication.ui.theme.Spacing
 
 @Composable
 fun AppItem(
@@ -31,20 +31,18 @@ fun AppItem(
     modifier: Modifier = Modifier,
 ) {
     Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 12.dp),
+        modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(Spacing.l),
     ) {
         AsyncImage(
             model = app.iconUrl,
             contentDescription = app.name,
             modifier = Modifier
-                .size(56.dp)
-                .clip(RoundedCornerShape(12.dp)),
+                .size(Size.appIcon)
+                .clip(MaterialTheme.shapes.medium),
         )
-        Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+        Column(verticalArrangement = Arrangement.spacedBy(Spacing.xxs)) {
             Text(
                 text = app.name,
                 style = MaterialTheme.typography.titleMedium,
@@ -87,6 +85,11 @@ private val Category.titleRes: Int
 @Composable
 private fun AppItemPreview() {
     MyApplicationTheme {
-        AppItem(app = sampleApps.first())
+        AppItem(
+            app = sampleApps.first(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = Spacing.l, vertical = Spacing.m),
+        )
     }
 }
