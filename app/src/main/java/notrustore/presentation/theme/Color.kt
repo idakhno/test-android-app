@@ -1,4 +1,4 @@
-package myapplication.ui.theme
+package notrustore.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
