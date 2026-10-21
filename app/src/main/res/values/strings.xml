@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">NotRuStore</string>
     <string name="install">Установить</string>
+    <string name="app_list_toolbar_message">Добро пожаловать в NotRuStore!</string>
 
     <string name="app_details_age">Возраст</string>
     <string name="app_details_size">Размер</string>
