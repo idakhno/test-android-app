@@ -20,8 +20,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import coil3.compose.AsyncImage
 import notrustore.R
-import notrustore.data.model.AppInfo
-import notrustore.data.sampleApps
+import notrustore.domain.model.AppInfo
+import notrustore.presentation.preview.previewApp
 import notrustore.presentation.screens.applist.titleRes
 import notrustore.presentation.theme.NotRuStoreTheme
 import notrustore.presentation.theme.Size
@@ -101,6 +101,6 @@ fun AppDetailsHeader(
 @Composable
 private fun Preview() {
     NotRuStoreTheme {
-        AppDetailsHeader(appDetails = sampleApps.first(), modifier = Modifier.fillMaxWidth())
+        AppDetailsHeader(appDetails = previewApp, modifier = Modifier.fillMaxWidth())
     }
 }

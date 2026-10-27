@@ -1,4 +1,4 @@
-package notrustore.data.model
+package notrustore.domain.model
 
 enum class Category {
     APP,

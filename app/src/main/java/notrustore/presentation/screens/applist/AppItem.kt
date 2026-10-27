@@ -18,9 +18,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import coil3.compose.AsyncImage
 import notrustore.R
-import notrustore.data.model.AppInfo
-import notrustore.data.model.Category
-import notrustore.data.sampleApps
+import notrustore.domain.model.AppInfo
+import notrustore.domain.model.Category
+import notrustore.presentation.preview.previewApp
 import notrustore.presentation.theme.NotRuStoreTheme
 import notrustore.presentation.theme.Size
 import notrustore.presentation.theme.Spacing
@@ -86,7 +86,7 @@ internal val Category.titleRes: Int
 private fun AppItemPreview() {
     NotRuStoreTheme {
         AppItem(
-            app = sampleApps.first(),
+            app = previewApp,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = Spacing.l, vertical = Spacing.m),

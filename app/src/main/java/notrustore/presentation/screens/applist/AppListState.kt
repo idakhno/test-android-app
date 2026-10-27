@@ -1,7 +1,7 @@
 package notrustore.presentation.screens.applist
 
 import androidx.compose.runtime.Immutable
-import notrustore.data.model.AppInfo
+import notrustore.domain.model.AppInfo
 
 @Immutable
 sealed interface AppListState {
