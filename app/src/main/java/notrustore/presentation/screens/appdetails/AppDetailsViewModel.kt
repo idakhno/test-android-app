@@ -10,11 +10,12 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import notrustore.data.sampleApps
+import notrustore.domain.repository.AppRepository
 import notrustore.presentation.navigation.Routes
 
 class AppDetailsViewModel(
     savedStateHandle: SavedStateHandle,
+    private val repository: AppRepository,
 ) : ViewModel() {
 
     private val appName: String = checkNotNull(savedStateHandle[Routes.APP_NAME_ARG])
@@ -46,16 +47,20 @@ class AppDetailsViewModel(
     }
 
     fun getAppDetails() {
-        val appDetails = sampleApps.find { it.name == appName }
-        _state.value = if (appDetails != null) {
-            AppDetailsState.Content(
-                appDetails = appDetails,
-                similarApps = sampleApps,
-                showcaseApps = showcaseApps,
-                descriptionCollapsed = false,
-            )
-        } else {
-            AppDetailsState.Error
+        viewModelScope.launch {
+            _state.value = AppDetailsState.Loading
+            val appDetails = repository.getApp(appName)
+            _state.value = if (appDetails != null) {
+                val apps = repository.getApps()
+                AppDetailsState.Content(
+                    appDetails = appDetails,
+                    similarApps = apps,
+                    showcaseApps = apps.take(SHOWCASE_PAGE_COUNT * SHOWCASE_APPS_PER_PAGE),
+                    descriptionCollapsed = false,
+                )
+            } else {
+                AppDetailsState.Error
+            }
         }
     }
 }
