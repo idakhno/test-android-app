@@ -17,16 +17,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import notrustore.R
-import notrustore.data.model.AppInfo
-import notrustore.data.sampleApps
+import notrustore.domain.model.AppInfo
+import notrustore.presentation.preview.previewApps
 import notrustore.presentation.screens.applist.AppItem
 import notrustore.presentation.theme.NotRuStoreTheme
 import notrustore.presentation.theme.Spacing
 
 internal const val SHOWCASE_PAGE_COUNT = 3
 internal const val SHOWCASE_APPS_PER_PAGE = 3
-
-internal val showcaseApps = sampleApps.take(SHOWCASE_PAGE_COUNT * SHOWCASE_APPS_PER_PAGE)
 
 @Composable
 fun Showcase(
@@ -71,7 +69,7 @@ fun Showcase(
 private fun Preview() {
     NotRuStoreTheme {
         Showcase(
-            apps = showcaseApps,
+            apps = previewApps,
             onAppClick = {},
             contentPadding = PaddingValues(horizontal = Spacing.l),
         )

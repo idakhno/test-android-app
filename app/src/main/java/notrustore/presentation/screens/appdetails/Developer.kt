@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import notrustore.R
-import notrustore.data.sampleApps
+import notrustore.presentation.preview.previewApp
 import notrustore.presentation.theme.NotRuStoreTheme
 
 @Composable
@@ -54,7 +54,7 @@ fun Developer(
 private fun Preview() {
     NotRuStoreTheme {
         Developer(
-            name = sampleApps.first().developer,
+            name = previewApp.developer,
             onClick = {},
             modifier = Modifier.fillMaxWidth(),
         )

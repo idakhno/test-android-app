@@ -18,7 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import coil3.compose.AsyncImage
 import notrustore.R
-import notrustore.data.sampleApps
+import notrustore.presentation.preview.previewApp
 import notrustore.presentation.theme.NotRuStoreTheme
 import notrustore.presentation.theme.Spacing
 
@@ -60,7 +60,7 @@ fun ScreenshotsList(
 private fun Preview() {
     NotRuStoreTheme {
         ScreenshotsList(
-            screenshotUrlList = sampleApps.first().screenshotUrlList,
+            screenshotUrlList = previewApp.screenshotUrlList,
             contentPadding = PaddingValues(horizontal = Spacing.l),
         )
     }

@@ -14,8 +14,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import notrustore.data.model.AppInfo
-import notrustore.data.sampleApps
+import notrustore.domain.model.AppInfo
+import notrustore.presentation.preview.previewApp
+import notrustore.presentation.preview.previewApps
 import notrustore.presentation.theme.NotRuStoreTheme
 import notrustore.presentation.theme.Spacing
 
@@ -101,9 +102,9 @@ private fun Preview() {
     NotRuStoreTheme {
         AppDetailsContent(
             content = AppDetailsState.Content(
-                appDetails = sampleApps.first(),
-                similarApps = sampleApps,
-                showcaseApps = showcaseApps,
+                appDetails = previewApp,
+                similarApps = previewApps,
+                showcaseApps = previewApps,
                 descriptionCollapsed = false,
             ),
             onReadMoreClick = {},

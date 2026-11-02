@@ -1,4 +1,4 @@
-package notrustore.data.model
+package notrustore.domain.model
 
 data class AppInfo(
     val iconUrl: String,

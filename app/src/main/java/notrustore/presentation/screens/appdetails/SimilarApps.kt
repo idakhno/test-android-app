@@ -22,8 +22,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import coil3.compose.AsyncImage
 import notrustore.R
-import notrustore.data.model.AppInfo
-import notrustore.data.sampleApps
+import notrustore.domain.model.AppInfo
+import notrustore.presentation.preview.previewApps
 import notrustore.presentation.theme.NotRuStoreTheme
 import notrustore.presentation.theme.Size
 import notrustore.presentation.theme.Spacing
@@ -90,7 +90,7 @@ private fun SimilarAppItem(
 private fun Preview() {
     NotRuStoreTheme {
         SimilarApps(
-            apps = sampleApps,
+            apps = previewApps,
             onDownloadClick = {},
         )
     }

@@ -13,7 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import notrustore.R
-import notrustore.data.sampleApps
+import notrustore.presentation.preview.previewApp
 import notrustore.presentation.theme.NotRuStoreTheme
 import notrustore.presentation.theme.Spacing
 
@@ -56,7 +56,7 @@ fun AppDescription(
 private fun PreviewShort() {
     NotRuStoreTheme {
         AppDescription(
-            description = sampleApps.first().description,
+            description = previewApp.description,
             onReadMoreClick = {},
             collapsed = false,
         )
@@ -68,7 +68,7 @@ private fun PreviewShort() {
 private fun PreviewCollapsed() {
     NotRuStoreTheme {
         AppDescription(
-            description = sampleApps.first().description,
+            description = previewApp.description,
             onReadMoreClick = {},
             collapsed = true,
         )

@@ -1,214 +1,213 @@
-package notrustore.data
+package notrustore.data.source
 
-import notrustore.data.model.AppInfo
-import notrustore.data.model.Category
+import notrustore.data.dto.AppInfoDto
 
-val sampleApps = listOf(
-    AppInfo(
+internal val sampleAppDtos = listOf(
+    AppInfoDto(
         iconUrl = "https://fastly.picsum.photos/id/237/200/200.jpg?hmac=zHUGikXUDyLCCmvyww1izLK3R3k8oRYBRiTizZEdyfI",
         name = "QuickNote",
         description = "Быстрые заметки и списки дел с синхронизацией между устройствами",
-        category = Category.PRODUCTIVITY,
+        category = "productivity",
         developer = "Notely Labs",
         ageRating = 0,
-        size = 24.5f,
-        screenshotUrlList = listOf(
+        sizeMb = 24.5f,
+        screenshots = listOf(
             "https://picsum.photos/seed/quicknote-1/640/360",
             "https://picsum.photos/seed/quicknote-2/640/360",
             "https://picsum.photos/seed/quicknote-3/640/360",
         ),
     ),
-    AppInfo(
+    AppInfoDto(
         iconUrl = "https://fastly.picsum.photos/id/238/200/200.jpg?hmac=O4Jc6lqHVfaKVzLf8bWssNTbWzQoaRUC0TDXod9xDdM",
         name = "Calmalist",
         description = "Медитации и дыхательные практики для снятия стресса",
-        category = Category.HEALTH,
+        category = "health",
         developer = "Calm Mind",
         ageRating = 6,
-        size = 87.2f,
-        screenshotUrlList = listOf(
+        sizeMb = 87.2f,
+        screenshots = listOf(
             "https://picsum.photos/seed/calmalist-1/640/360",
             "https://picsum.photos/seed/calmalist-2/640/360",
             "https://picsum.photos/seed/calmalist-3/640/360",
         ),
     ),
-    AppInfo(
+    AppInfoDto(
         iconUrl = "https://fastly.picsum.photos/id/239/200/200.jpg?hmac=8JqlXUpZ9Xy0H6tMK8sCPQAYU9vUn9Qa8Kg-U9h3sCY",
         name = "FitRiver",
         description = "Трекер пробежек и велопрогулок с картой маршрутов",
-        category = Category.SPORTS,
+        category = "sports",
         developer = "River Sport",
         ageRating = 0,
-        size = 112.4f,
-        screenshotUrlList = listOf(
+        sizeMb = 112.4f,
+        screenshots = listOf(
             "https://picsum.photos/seed/fitriver-1/640/360",
             "https://picsum.photos/seed/fitriver-2/640/360",
             "https://picsum.photos/seed/fitriver-3/640/360",
         ),
     ),
-    AppInfo(
+    AppInfoDto(
         iconUrl = "https://fastly.picsum.photos/id/240/200/200.jpg?hmac=PZiJibMUuv5Zpv9MAcqLaCYJOPt-XNuDh3RPBZiGcoY",
         name = "TaskLoop",
         description = "Планировщик задач с повторяющимися напоминаниями",
-        category = Category.BUSINESS,
+        category = "business",
         developer = "Loop Software",
         ageRating = 0,
-        size = 36.8f,
-        screenshotUrlList = listOf(
+        sizeMb = 36.8f,
+        screenshots = listOf(
             "https://picsum.photos/seed/taskloop-1/640/360",
             "https://picsum.photos/seed/taskloop-2/640/360",
             "https://picsum.photos/seed/taskloop-3/640/360",
         ),
     ),
-    AppInfo(
+    AppInfoDto(
         iconUrl = "https://fastly.picsum.photos/id/241/200/200.jpg?hmac=F-mDYyK1xUiXjlLd5PvE8EQpTwGfFndV7mMaANDtl28",
         name = "Pixtrix",
         description = "Фоторедактор с фильтрами и ретушью в одно касание",
-        category = Category.PHOTOGRAPHY,
+        category = "photography",
         developer = "Pixel Craft",
         ageRating = 12,
-        size = 148.0f,
-        screenshotUrlList = listOf(
+        sizeMb = 148.0f,
+        screenshots = listOf(
             "https://picsum.photos/seed/pixtrix-1/640/360",
             "https://picsum.photos/seed/pixtrix-2/640/360",
             "https://picsum.photos/seed/pixtrix-3/640/360",
         ),
     ),
-    AppInfo(
+    AppInfoDto(
         iconUrl = "https://fastly.picsum.photos/id/242/200/200.jpg?hmac=Z3aa8zbEQkEMFgnVh0Pn96vmCZHhJ17qzCrePYksrcY",
         name = "TinyChef",
         description = "Простые рецепты на каждый день с пошаговыми инструкциями",
-        category = Category.FOOD,
+        category = "food",
         developer = "Tiny Kitchen",
         ageRating = 0,
-        size = 64.3f,
-        screenshotUrlList = listOf(
+        sizeMb = 64.3f,
+        screenshots = listOf(
             "https://picsum.photos/seed/tinychef-1/640/360",
             "https://picsum.photos/seed/tinychef-2/640/360",
             "https://picsum.photos/seed/tinychef-3/640/360",
         ),
     ),
-    AppInfo(
+    AppInfoDto(
         iconUrl = "https://fastly.picsum.photos/id/243/200/200.jpg?hmac=fW5ZwzzyTBy2t2MROp988oq12mZnKwN0coFLhZEE87s",
         name = "GymMate",
         description = "Дневник тренировок в зале и готовые программы упражнений",
-        category = Category.SPORTS,
+        category = "sports",
         developer = "Mate Fitness",
         ageRating = 6,
-        size = 92.6f,
-        screenshotUrlList = listOf(
+        sizeMb = 92.6f,
+        screenshots = listOf(
             "https://picsum.photos/seed/gymmate-1/640/360",
             "https://picsum.photos/seed/gymmate-2/640/360",
             "https://picsum.photos/seed/gymmate-3/640/360",
         ),
     ),
-    AppInfo(
+    AppInfoDto(
         iconUrl = "https://fastly.picsum.photos/id/244/200/200.jpg?hmac=Q1gdvE6ZPZUX3nXkxvmzuc12eKVZ9XVEmSH3nCJ2OOo",
         name = "FlowCard",
         description = "Учёт расходов и бюджета по банковским картам",
-        category = Category.FINANCE,
+        category = "finance",
         developer = "Flow Finance",
         ageRating = 16,
-        size = 58.1f,
-        screenshotUrlList = listOf(
+        sizeMb = 58.1f,
+        screenshots = listOf(
             "https://picsum.photos/seed/flowcard-1/640/360",
             "https://picsum.photos/seed/flowcard-2/640/360",
             "https://picsum.photos/seed/flowcard-3/640/360",
         ),
     ),
-    AppInfo(
+    AppInfoDto(
         iconUrl = "https://fastly.picsum.photos/id/2/200/200.jpg?hmac=isSWZUpv7D1D156XcADPOCZlfCG9mmvb8OlXFdvLdK0",
         name = "DreamSafe",
         description = "Отслеживание сна и умный будильник",
-        category = Category.HEALTH,
+        category = "health",
         developer = "Safe Sleep",
         ageRating = 0,
-        size = 41.7f,
-        screenshotUrlList = listOf(
+        sizeMb = 41.7f,
+        screenshots = listOf(
             "https://picsum.photos/seed/dreamsafe-1/640/360",
             "https://picsum.photos/seed/dreamsafe-2/640/360",
             "https://picsum.photos/seed/dreamsafe-3/640/360",
         ),
     ),
-    AppInfo(
+    AppInfoDto(
         iconUrl = "https://fastly.picsum.photos/id/3/200/200.jpg?hmac=N5yYUNYl5gOUcaMmTtnNNtx839TN2qaNM4SaXhQl65U",
         name = "MoodPin",
         description = "Дневник настроения с заметками и статистикой",
-        category = Category.APP,
+        category = "app",
         developer = "Pin Studio",
         ageRating = 12,
-        size = 29.9f,
-        screenshotUrlList = listOf(
+        sizeMb = 29.9f,
+        screenshots = listOf(
             "https://picsum.photos/seed/moodpin-1/640/360",
             "https://picsum.photos/seed/moodpin-2/640/360",
             "https://picsum.photos/seed/moodpin-3/640/360",
         ),
     ),
-    AppInfo(
+    AppInfoDto(
         iconUrl = "https://fastly.picsum.photos/id/247/200/200.jpg?hmac=oKt3N5MCdI8hCrzIbokjpVNzUuywbK64CJn1bfRAxbA",
         name = "Shoply",
         description = "Списки покупок и сравнение цен в магазинах рядом",
-        category = Category.SHOPPING,
+        category = "shopping",
         developer = "Shoply Team",
         ageRating = 0,
-        size = 73.4f,
-        screenshotUrlList = listOf(
+        sizeMb = 73.4f,
+        screenshots = listOf(
             "https://picsum.photos/seed/shoply-1/640/360",
             "https://picsum.photos/seed/shoply-2/640/360",
             "https://picsum.photos/seed/shoply-3/640/360",
         ),
     ),
-    AppInfo(
+    AppInfoDto(
         iconUrl = "https://fastly.picsum.photos/id/248/200/200.jpg?hmac=36BllTJxy_tU762d2RYKfYaSQ3-RmP74hVxabGP_u3o",
         name = "FeedJoy",
         description = "Лента новостей из любимых источников в одном месте",
-        category = Category.NEWS,
+        category = "news",
         developer = "Joy Media",
         ageRating = 16,
-        size = 51.2f,
-        screenshotUrlList = listOf(
+        sizeMb = 51.2f,
+        screenshots = listOf(
             "https://picsum.photos/seed/feedjoy-1/640/360",
             "https://picsum.photos/seed/feedjoy-2/640/360",
             "https://picsum.photos/seed/feedjoy-3/640/360",
         ),
     ),
-    AppInfo(
+    AppInfoDto(
         iconUrl = "https://fastly.picsum.photos/id/249/200/200.jpg?hmac=75zqoHvrxGGVnJnS8h0gUzZ3zniIk6PggG38GjmyOto",
         name = "Scanwise",
         description = "Сканер документов и QR-кодов с распознаванием текста",
-        category = Category.UTILITIES,
+        category = "utilities",
         developer = "Wise Tools",
         ageRating = 0,
-        size = 38.6f,
-        screenshotUrlList = listOf(
+        sizeMb = 38.6f,
+        screenshots = listOf(
             "https://picsum.photos/seed/scanwise-1/640/360",
             "https://picsum.photos/seed/scanwise-2/640/360",
             "https://picsum.photos/seed/scanwise-3/640/360",
         ),
     ),
-    AppInfo(
+    AppInfoDto(
         iconUrl = "https://fastly.picsum.photos/id/250/200/200.jpg?hmac=23TaEG1txY5qYZ70amm2sUf0GYKo4v7yIbN9ooyqWzs",
         name = "MemoSpark",
         description = "Карточки для запоминания иностранных слов",
-        category = Category.EDUCATION,
+        category = "education",
         developer = "Spark Learning",
         ageRating = 0,
-        size = 45.0f,
-        screenshotUrlList = listOf(
+        sizeMb = 45.0f,
+        screenshots = listOf(
             "https://picsum.photos/seed/memospark-1/640/360",
             "https://picsum.photos/seed/memospark-2/640/360",
             "https://picsum.photos/seed/memospark-3/640/360",
         ),
     ),
-    AppInfo(
+    AppInfoDto(
         iconUrl = "https://fastly.picsum.photos/id/251/200/200.jpg?hmac=_yKttpPQLBisFkKPMRolKUyfZ89QQpENncPdrg8a1J0",
         name = "ZenRadio",
         description = "Онлайн-радио и плейлисты для работы и отдыха",
-        category = Category.MUSIC,
+        category = "music",
         developer = "Zen Sound",
         ageRating = 12,
-        size = 33.3f,
-        screenshotUrlList = listOf(
+        sizeMb = 33.3f,
+        screenshots = listOf(
             "https://picsum.photos/seed/zenradio-1/640/360",
             "https://picsum.photos/seed/zenradio-2/640/360",
             "https://picsum.photos/seed/zenradio-3/640/360",
