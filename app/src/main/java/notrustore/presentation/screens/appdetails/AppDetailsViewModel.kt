@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.Channel.Factory.BUFFERED
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,7 +22,7 @@ class AppDetailsViewModel @Inject constructor(
     private val repository: AppRepository,
 ) : ViewModel() {
 
-    private val appName: String = checkNotNull(savedStateHandle[Routes.APP_NAME_ARG])
+    private val appId: String = checkNotNull(savedStateHandle[Routes.APP_ID_ARG])
 
     private val _state = MutableStateFlow<AppDetailsState>(AppDetailsState.Loading)
     val state = _state.asStateFlow()
@@ -52,17 +53,25 @@ class AppDetailsViewModel @Inject constructor(
     fun getAppDetails() {
         viewModelScope.launch {
             _state.value = AppDetailsState.Loading
-            val appDetails = repository.getApp(appName)
-            _state.value = if (appDetails != null) {
-                val apps = repository.getApps()
-                AppDetailsState.Content(
+            try {
+                val appDetails = repository.getApp(appId)
+                val apps = try {
+                    repository.getApps()
+                } catch (error: CancellationException) {
+                    throw error
+                } catch (_: Exception) {
+                    emptyList()
+                }
+                _state.value = AppDetailsState.Content(
                     appDetails = appDetails,
                     similarApps = apps,
                     showcaseApps = apps.take(SHOWCASE_PAGE_COUNT * SHOWCASE_APPS_PER_PAGE),
                     descriptionCollapsed = false,
                 )
-            } else {
-                AppDetailsState.Error
+            } catch (error: CancellationException) {
+                throw error
+            } catch (_: Exception) {
+                _state.value = AppDetailsState.Error
             }
         }
     }

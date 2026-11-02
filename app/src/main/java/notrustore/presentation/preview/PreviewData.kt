@@ -4,6 +4,7 @@ import notrustore.domain.model.AppInfo
 import notrustore.domain.model.Category
 
 internal val previewApp = AppInfo(
+    id = "preview-app",
     iconUrl = "https://fastly.picsum.photos/id/237/200/200.jpg?hmac=zHUGikXUDyLCCmvyww1izLK3R3k8oRYBRiTizZEdyfI",
     name = "QuickNote",
     description = "Быстрые заметки и списки дел с синхронизацией между устройствами",
