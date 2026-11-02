@@ -15,11 +15,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.lifecycle.createSavedStateHandle
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import kotlinx.coroutines.flow.Flow
 import notrustore.R
-import notrustore.di.AppContainer
 import notrustore.domain.model.AppInfo
 
 @Composable
@@ -27,12 +25,7 @@ fun AppDetailsScreen(
     onBackClick: () -> Unit,
     onShowcaseAppClick: (AppInfo) -> Unit,
 ) {
-    val viewModel = viewModel {
-        AppDetailsViewModel(
-            savedStateHandle = createSavedStateHandle(),
-            repository = AppContainer.appRepository,
-        )
-    }
+    val viewModel: AppDetailsViewModel = hiltViewModel()
     val state by viewModel.state.collectAsState()
     val events = viewModel.events
 

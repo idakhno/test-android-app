@@ -3,6 +3,8 @@ package notrustore.presentation.screens.appdetails
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.Channel.Factory.BUFFERED
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,7 +15,8 @@ import kotlinx.coroutines.launch
 import notrustore.domain.repository.AppRepository
 import notrustore.presentation.navigation.Routes
 
-class AppDetailsViewModel(
+@HiltViewModel
+class AppDetailsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val repository: AppRepository,
 ) : ViewModel() {
