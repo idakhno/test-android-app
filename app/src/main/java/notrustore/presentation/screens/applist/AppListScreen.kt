@@ -27,10 +27,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import kotlinx.coroutines.flow.Flow
 import notrustore.R
-import notrustore.di.AppContainer
 import notrustore.domain.model.AppInfo
 import notrustore.presentation.preview.previewApps
 import notrustore.presentation.theme.NotRuStoreTheme
@@ -41,7 +40,7 @@ import notrustore.presentation.theme.Spacing
 fun AppListScreen(
     onAppClick: (AppInfo) -> Unit,
 ) {
-    val viewModel = viewModel { AppListViewModel(AppContainer.appRepository) }
+    val viewModel: AppListViewModel = hiltViewModel()
     val state by viewModel.state.collectAsState()
 
     val snackbarHostState = remember { SnackbarHostState() }

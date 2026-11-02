@@ -1,11 +1,12 @@
 package notrustore.data.repository
 
+import javax.inject.Inject
 import notrustore.data.mapper.toDomain
 import notrustore.data.source.AppsLocalDataSource
 import notrustore.domain.model.AppInfo
 import notrustore.domain.repository.AppRepository
 
-class AppRepositoryImpl(
+class AppRepositoryImpl @Inject constructor(
     private val localDataSource: AppsLocalDataSource,
 ) : AppRepository {
 
