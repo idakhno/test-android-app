@@ -1,6 +1,7 @@
 package notrustore.domain.model
 
 data class AppInfo(
+    val id: String,
     val iconUrl: String,
     val name: String,
     val description: String,

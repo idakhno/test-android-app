@@ -19,12 +19,12 @@ fun AppNavHost() {
     ) {
         composable(Routes.APP_LIST) {
             AppListScreen(
-                onAppClick = { app -> navController.navigate("${Routes.APP_DETAILS}/${app.name}") },
+                onAppClick = { app -> navController.navigate("${Routes.APP_DETAILS}/${app.id}") },
             )
         }
         composable(
-            route = "${Routes.APP_DETAILS}/{${Routes.APP_NAME_ARG}}",
-            arguments = listOf(navArgument(Routes.APP_NAME_ARG) { type = NavType.StringType }),
+            route = "${Routes.APP_DETAILS}/{${Routes.APP_ID_ARG}}",
+            arguments = listOf(navArgument(Routes.APP_ID_ARG) { type = NavType.StringType }),
         ) {
             AppDetailsScreen(
                 onBackClick = { navController.popBackStack() },

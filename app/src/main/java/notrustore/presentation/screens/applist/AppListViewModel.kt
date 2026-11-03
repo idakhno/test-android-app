@@ -1,9 +1,11 @@
 package notrustore.presentation.screens.applist
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.Channel.Factory.BUFFERED
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -35,7 +37,14 @@ class AppListViewModel @Inject constructor(
 
     private fun getApps() {
         viewModelScope.launch {
-            _state.value = AppListState.Content(apps = repository.getApps())
+            try {
+                _state.value = AppListState.Content(apps = repository.getApps())
+            } catch (error: CancellationException) {
+                throw error
+            } catch (error: Exception) {
+                Log.e("AppListViewModel", "Failed to load catalog", error)
+                _state.value = AppListState.Error
+            }
         }
     }
 }

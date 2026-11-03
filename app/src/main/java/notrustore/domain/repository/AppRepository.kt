@@ -4,5 +4,5 @@ import notrustore.domain.model.AppInfo
 
 interface AppRepository {
     suspend fun getApps(): List<AppInfo>
-    suspend fun getApp(name: String): AppInfo?
+    suspend fun getApp(id: String): AppInfo
 }
