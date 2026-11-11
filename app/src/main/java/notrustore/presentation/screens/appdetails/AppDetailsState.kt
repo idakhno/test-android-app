@@ -12,5 +12,6 @@ sealed interface AppDetailsState {
         val similarApps: List<AppInfo>,
         val showcaseApps: List<AppInfo>,
         val descriptionCollapsed: Boolean,
+        val installState: InstallState = InstallState.NotInstalled,
     ) : AppDetailsState
 }

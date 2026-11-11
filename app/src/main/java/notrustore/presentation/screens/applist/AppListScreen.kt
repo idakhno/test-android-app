@@ -116,9 +116,27 @@ private fun AppListContent(
                 LazyColumn(
                     contentPadding = contentPadding,
                 ) {
-                    items(state.apps) { app ->
+                    item {
+                        Text(
+                            text = when {
+                                state.ratingsFailed -> stringResource(R.string.ratings_error)
+                                state.parallelTimeMillis != null -> stringResource(
+                                    R.string.ratings_times,
+                                    state.apps.size,
+                                    checkNotNull(state.sequentialTimeMillis),
+                                    state.parallelTimeMillis,
+                                )
+                                state.sequentialTimeMillis != null ->
+                                    stringResource(R.string.ratings_parallel_loading, state.sequentialTimeMillis)
+                                else -> stringResource(R.string.ratings_loading)
+                            },
+                            modifier = Modifier.padding(horizontal = Spacing.l, vertical = Spacing.m),
+                        )
+                    }
+                    items(state.apps, key = { it.id }) { app ->
                         AppItem(
                             app = app,
+                            rating = state.ratings[app.id],
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clickable { onAppClick(app) }

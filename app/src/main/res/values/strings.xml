@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">NotRuStore</string>
     <string name="install">Установить</string>
+    <string name="cancel_install">Отменить · %1$d%%</string>
+    <string name="installed">Установлено</string>
+    <string name="app_rating">★ %1$.1f</string>
+    <string name="ratings_loading">Загрузка рейтингов последовательно…</string>
+    <string name="ratings_parallel_loading">Последовательно: %1$d мс. Загрузка параллельно…</string>
+    <string name="ratings_times">Приложений: %1$d. Последовательно: %2$d мс. Параллельно: %3$d мс.</string>
+    <string name="ratings_error">Не удалось загрузить рейтинги</string>
     <string name="app_list_toolbar_message">Добро пожаловать в NotRuStore!</string>
 
     <string name="app_details_age">Возраст</string>
