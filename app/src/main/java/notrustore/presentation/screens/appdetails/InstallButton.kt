@@ -17,15 +17,22 @@ import notrustore.presentation.theme.Spacing
 fun InstallButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    installState: InstallState = InstallState.NotInstalled,
 ) {
     Button(
         onClick = onClick,
+        enabled = installState != InstallState.Installed,
         shape = MaterialTheme.shapes.small,
         contentPadding = PaddingValues(vertical = Spacing.m),
         modifier = modifier,
     ) {
         Text(
-            text = stringResource(R.string.install),
+            text = when (installState) {
+                InstallState.NotInstalled -> stringResource(R.string.install)
+                is InstallState.Installing ->
+                    stringResource(R.string.cancel_install, installState.progress)
+                InstallState.Installed -> stringResource(R.string.installed)
+            },
             style = MaterialTheme.typography.labelLarge,
         )
     }

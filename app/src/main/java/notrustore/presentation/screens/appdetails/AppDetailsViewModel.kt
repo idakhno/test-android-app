@@ -5,7 +5,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
+import kotlin.time.Duration.Companion.milliseconds
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.Channel.Factory.BUFFERED
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -34,6 +37,46 @@ class AppDetailsViewModel @Inject constructor(
         getAppDetails()
     }
 
+    private var installJob: Job? = null
+
+    fun onInstallClick() {
+        val current = _state.value
+        if (current !is AppDetailsState.Content) return
+
+        when (current.installState) {
+            is InstallState.Installing -> {
+                installJob?.cancel()
+                installJob = null
+                updateInstallState(InstallState.NotInstalled)
+            }
+            InstallState.NotInstalled -> {
+                updateInstallState(InstallState.Installing(0))
+                installJob = viewModelScope.launch {
+                    emulateInstall()
+                }
+            }
+            InstallState.Installed -> Unit
+        }
+    }
+
+    private suspend fun emulateInstall() {
+        for (progress in 5..100 step 5) {
+            delay(150.milliseconds)
+            updateInstallState(InstallState.Installing(progress))
+        }
+        updateInstallState(InstallState.Installed)
+    }
+
+    private fun updateInstallState(installState: InstallState) {
+        _state.update { current ->
+            if (current is AppDetailsState.Content) {
+                current.copy(installState = installState)
+            } else {
+                current
+            }
+        }
+    }
+
     fun showUnderDevelopmentMessage() {
         viewModelScope.launch {
             _events.send(AppDetailsEvent.UnderDevelopment)
@@ -51,6 +94,8 @@ class AppDetailsViewModel @Inject constructor(
     }
 
     fun getAppDetails() {
+        installJob?.cancel()
+        installJob = null
         viewModelScope.launch {
             _state.value = AppDetailsState.Loading
             try {

@@ -29,6 +29,7 @@ import notrustore.presentation.theme.Spacing
 fun AppItem(
     app: AppInfo,
     modifier: Modifier = Modifier,
+    rating: Float? = null,
 ) {
     Row(
         modifier = modifier,
@@ -47,6 +48,12 @@ fun AppItem(
                 text = app.name,
                 style = MaterialTheme.typography.titleMedium,
             )
+            if (rating != null) {
+                Text(
+                    text = stringResource(R.string.app_rating, rating),
+                    style = MaterialTheme.typography.labelMedium,
+                )
+            }
             Text(
                 text = app.description,
                 style = MaterialTheme.typography.bodyMedium,

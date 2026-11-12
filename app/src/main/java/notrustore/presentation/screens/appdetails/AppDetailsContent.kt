@@ -48,6 +48,7 @@ fun AppDetailsContent(
         Spacer(Modifier.height(Spacing.l))
         InstallButton(
             onClick = onInstallClick,
+            installState = content.installState,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = Spacing.l)

@@ -69,9 +69,7 @@ fun AppDetailsScreen(
                     onShareClick = {
                         viewModel.showUnderDevelopmentMessage()
                     },
-                    onInstallClick = {
-                        viewModel.showUnderDevelopmentMessage()
-                    },
+                    onInstallClick = viewModel::onInstallClick,
                     onReadMoreClick = {
                         viewModel.collapseDescription()
                     },
