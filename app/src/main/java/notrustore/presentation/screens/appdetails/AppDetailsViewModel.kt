@@ -16,13 +16,15 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import notrustore.domain.repository.AppRepository
+import notrustore.domain.usecase.GetAppUseCase
+import notrustore.domain.usecase.GetAppsUseCase
 import notrustore.presentation.navigation.Routes
 
 @HiltViewModel
 class AppDetailsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    private val repository: AppRepository,
+    private val getAppUseCase: GetAppUseCase,
+    private val getAppsUseCase: GetAppsUseCase,
 ) : ViewModel() {
 
     private val appId: String = checkNotNull(savedStateHandle[Routes.APP_ID_ARG])
@@ -40,10 +42,9 @@ class AppDetailsViewModel @Inject constructor(
     private var installJob: Job? = null
 
     fun onInstallClick() {
-        val current = _state.value
-        if (current !is AppDetailsState.Content) return
+        val installState = (_state.value as? AppDetailsState.Content)?.installState ?: return
 
-        when (current.installState) {
+        when (installState) {
             is InstallState.Installing -> {
                 installJob?.cancel()
                 installJob = null
@@ -60,7 +61,7 @@ class AppDetailsViewModel @Inject constructor(
     }
 
     private suspend fun emulateInstall() {
-        for (progress in 5..100 step 5) {
+        for (progress in (5..100) step 5) {
             delay(150.milliseconds)
             updateInstallState(InstallState.Installing(progress))
         }
@@ -69,11 +70,7 @@ class AppDetailsViewModel @Inject constructor(
 
     private fun updateInstallState(installState: InstallState) {
         _state.update { current ->
-            if (current is AppDetailsState.Content) {
-                current.copy(installState = installState)
-            } else {
-                current
-            }
+            (current as? AppDetailsState.Content)?.copy(installState = installState) ?: current
         }
     }
 
@@ -85,11 +82,7 @@ class AppDetailsViewModel @Inject constructor(
 
     fun collapseDescription() {
         _state.update { currentState ->
-            if (currentState is AppDetailsState.Content) {
-                currentState.copy(descriptionCollapsed = true)
-            } else {
-                currentState
-            }
+            (currentState as? AppDetailsState.Content)?.copy(descriptionCollapsed = true) ?: currentState
         }
     }
 
@@ -99,9 +92,9 @@ class AppDetailsViewModel @Inject constructor(
         viewModelScope.launch {
             _state.value = AppDetailsState.Loading
             try {
-                val appDetails = repository.getApp(appId)
+                val appDetails = getAppUseCase(appId)
                 val apps = try {
-                    repository.getApps()
+                    getAppsUseCase()
                 } catch (error: CancellationException) {
                     throw error
                 } catch (_: Exception) {
