@@ -44,3 +44,39 @@ private fun String?.toCatalogCategory(): Category = when (this) {
     "Утилиты" -> Category.UTILITIES
     else -> Category.APP
 }
+
+fun AppInfo.toCatalogAppDto(): CatalogAppDto = CatalogAppDto(
+    id = id,
+    name = name,
+    description = description.ifEmpty { null },
+    category = category.toDtoCategory(),
+    iconUrl = iconUrl.ifEmpty { null },
+)
+
+fun AppInfo.toAppDetailsDto(): AppDetailsDto = AppDetailsDto(
+    id = id,
+    name = name,
+    description = description.ifEmpty { null },
+    category = category.toDtoCategory(),
+    iconUrl = iconUrl.ifEmpty { null },
+    developer = developer.ifEmpty { null },
+    ageRating = ageRating.takeIf { it > 0 },
+    size = size.takeIf { it > 0f },
+    screenshotUrlList = screenshotUrlList.takeIf { it.isNotEmpty() },
+)
+
+private fun Category.toDtoCategory(): String? = when (this) {
+    Category.APP -> null
+    Category.PRODUCTIVITY -> "Производительность"
+    Category.EDUCATION -> "Образование"
+    Category.MUSIC -> "Музыка"
+    Category.PHOTOGRAPHY -> "Фото и видео"
+    Category.HEALTH -> "Здоровье и фитнес"
+    Category.SPORTS -> "Спорт"
+    Category.NEWS -> "Новости"
+    Category.BUSINESS -> "Бизнес"
+    Category.FINANCE -> "Финансы"
+    Category.FOOD -> "Еда и напитки"
+    Category.SHOPPING -> "Шопинг"
+    Category.UTILITIES -> "Утилиты"
+}
